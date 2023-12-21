@@ -96,10 +96,22 @@ services:
       - 8097
     restart: always
     depends_on:
-      keycloak:
+      - keycloak
     environment:
       - KEYCLOAK_REDIRECT_URI=http://localhost:8097/login/oauth2/code/ab-customer-app
       - KEYCLOAK_ISSUER_URI=http://keycloak:8080/realms/ab-realm
+      - KEYCLOAK_AUTH=http://localhost:8080/realms/ab-realm/protocol/openid-connect/auth
+      - KEYCLOAK_AUTH_TOKEN=http://keycloak:8080/realms/ab-realm/protocol/openid-connect/token
+      - JWT_JWK_SET_URI=http://keycloak:8080/realms/ab-realm/protocol/openid-connect/certs
+      - INVENTORY_SERVICE_BASE_URI=http://inventory-service:8098
+  angular-front:
+    build: ./customer-front-angular
+    container_name: angular-front
+    ports:
+      - '8099:80'
+    expose:
+      - '8099'
+    restart: always
 volumes:
   mysql_data:
   postgres_data:

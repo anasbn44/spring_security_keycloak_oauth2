@@ -7,12 +7,13 @@ import { CustomersComponent } from './customers/customers.component';
 import { ProductsComponent } from './products/products.component';
 import {HttpClientModule} from "@angular/common/http";
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import {environment} from "../environments/environment";
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'http://localhost:8080',
+        url: environment.KEYCLOAK_URL,
         realm: 'ab-realm',
         clientId: 'ng-customer-client'
       },

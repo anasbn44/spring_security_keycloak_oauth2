@@ -103,15 +103,18 @@ services:
       - KEYCLOAK_AUTH=http://localhost:8080/realms/ab-realm/protocol/openid-connect/auth
       - KEYCLOAK_AUTH_TOKEN=http://keycloak:8080/realms/ab-realm/protocol/openid-connect/token
       - JWT_JWK_SET_URI=http://keycloak:8080/realms/ab-realm/protocol/openid-connect/certs
-      - INVENTORY_SERVICE_BASE_URI=http://inventory-service:8098
+      - INVENTORY_SERVICE_PRODUCTS_URI=http://inventory-service:8098
   angular-front:
     build: ./customer-front-angular
     container_name: angular-front
     ports:
-      - '8099:80'
+      - 4200:80
     expose:
-      - '8099'
+      - 4200
     restart: always
+    environment:
+      - KEYCLOAK_URL=http://keycloak:8080
+      - INVENTORY_SERVICE_BASE_URI=http://inventory-service:8098/products
 volumes:
   mysql_data:
   postgres_data:

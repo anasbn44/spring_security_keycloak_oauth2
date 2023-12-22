@@ -12,10 +12,11 @@ export class ProductsComponent implements OnInit{
   constructor(private http : HttpClient) {
   }
   ngOnInit(): void {
-    this.http.get(environment.INVENTORY_SERVICE_PRODUCTS_URI)
+    this.http.get('http://localhost:8098/products')
       .subscribe({
         next : value => {
           this.products = value;
+          console.log(this.products);
         },
         error : err => console.log(err)
       })

@@ -13,7 +13,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'http://localhost:8080',
+        url: environment.KEYCLOAK_URL,
         realm: 'ab-realm',
         clientId: 'ng-customer-client'
       },

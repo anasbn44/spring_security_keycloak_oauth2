@@ -100,7 +100,7 @@ services:
     depends_on:
       - keycloak
     environment:
-      - KEYCLOAK_REDIRECT_URI=http://localhost:8097/login/oauth2/code/ab-customer-app
+#      - KEYCLOAK_REDIRECT_URI=http://localhost:8097/login/oauth2/code/ab-customer-app
       - KEYCLOAK_ISSUER_URI=http://keycloak:8080/realms/ab-realm
       - KEYCLOAK_AUTH=http://localhost:8080/realms/ab-realm/protocol/openid-connect/auth
       - KEYCLOAK_AUTH_TOKEN=http://keycloak:8080/realms/ab-realm/protocol/openid-connect/token
